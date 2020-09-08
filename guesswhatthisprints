@@ -1,0 +1,7 @@
+#include <iostream>
+//im just studying calloc, realloc and free
+int main()
+{
+    int* ptr = new int();
+    std::cout << *ptr << std::endl;
+}
