@@ -1,0 +1,13 @@
+#include <iostream>
+//im just studying calloc, realloc and free
+int main()
+{
+    int* ptr = static_cast<int*>(calloc(1, sizeof(int)));
+    *ptr = 7;
+    std::cout << *ptr << std::endl;
+    //vs built in function to check size
+    std::cout << "initial mem size: " << _msize(ptr) << std::endl;
+    ptr = static_cast<int*>(realloc(ptr, sizeof(int) * 2));
+    std::cout << "mem size after realloc: " << _msize(ptr) << std::endl;
+    free(ptr);
+}
