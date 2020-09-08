@@ -1,0 +1,8 @@
+#include <iostream>
+
+int main()
+{
+    int* ptr = new int(6);
+    std::cout << *ptr << std::endl;
+    delete ptr;
+}
