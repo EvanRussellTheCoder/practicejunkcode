@@ -1,0 +1,9 @@
+#include <iostream>
+//im just studying calloc and free
+int main()
+{
+    int* ptr = static_cast<int*>(calloc(1, sizeof(int)));
+    *ptr = 7;
+    std::cout << *ptr << std::endl;
+    free(ptr);
+}
