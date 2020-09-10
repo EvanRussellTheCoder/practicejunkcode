@@ -1,0 +1,68 @@
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+#include <string.h>
+
+typedef std::chrono::high_resolution_clock Clock;
+typedef std::chrono::duration<double> Seconds;
+
+long double euler1(int n) {
+    long double sum = 0;
+    long double fact;
+
+    for (int i = 0 ; i <= n ; i ++) {
+        fact = 1;
+        for (int j = 2 ; j <= i ; j++) {
+            fact *= j;
+            }
+        sum += (1.0 / fact);
+    }
+    return sum;
+}
+
+long double euler2(int n) {
+    long double sum = 0;
+    long double fact = 1;
+    for (int i = 0 ; i <= n ; i++) {
+        sum += (1.0 / fact);
+        fact *= (i+1);
+    }
+    return sum;
+}
+
+void time_func(int n, const char *name) {
+    long double val;
+    Clock::time_point tic, toc;
+    if (! strcmp(name, "Euler1")) {
+        tic = Clock::now();
+        val = euler1(n);
+        toc = Clock::now();
+    }
+    if (! strcmp(name, "Euler2")) {
+        tic = Clock::now();
+        val = euler2(n);
+        toc = Clock::now();
+    }
+    std::cout << name << " euler(" << n << "):\t" << std::fixed << std::setprecision(4) << Seconds(toc-tic).count() << " sec.\tOutput: " << val << std::endl;
+}
+
+int main(int argc, char **argv) {
+    // 2 command line arguments
+    // n
+    // algorithm (either Euler1 or Euler2)
+    int n = std::stoi(argv[1]);
+    time_func(n, argv[2]);
+
+    return 0;
+}
+//other bin file
+#!/bin/bash
+echo "Running a few trials ..."
+
+for i in {0..1000}
+do
+    echo 'Calculating the value of Euler('$i') using '$1
+    ./prog $i $1
+    echo '---'
+    echo
+done
