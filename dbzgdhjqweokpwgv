@@ -1,0 +1,16 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int x;
+
+  cout<<"What does the scouter say about Goku's power level?"<<endl;
+  cin>>x;
+  if (x>9000){  
+    cout<<endl<<"IT'S OVER 9000!"<<endl;
+  } else {
+    cout<<endl<<"He really is just low-class scum!"<<endl;
+  }
+  return 0;
+}
